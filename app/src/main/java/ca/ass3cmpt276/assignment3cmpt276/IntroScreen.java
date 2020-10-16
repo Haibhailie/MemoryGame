@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.WindowManager;
 
 public class IntroScreen extends AppCompatActivity {
 
@@ -11,6 +12,8 @@ public class IntroScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro_screen);
+        getSupportActionBar().hide();
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         Thread splashThread = new Thread() {
             public void run() {
                 try {

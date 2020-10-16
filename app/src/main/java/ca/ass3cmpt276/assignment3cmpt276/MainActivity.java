@@ -2,7 +2,9 @@ package ca.ass3cmpt276.assignment3cmpt276;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.ViewDebug;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -10,6 +12,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Update Project Here
+        Intent splashScreen = new Intent(this, IntroScreen.class);
+        startActivity(splashScreen);
     }
+
+    private void launchMain() {
+        Intent mainScreen = new Intent(this, MainActivity.class);
+        startActivity(mainScreen);
+        finish();
+    }
+
 }

@@ -9,26 +9,96 @@
     <pl.droidsonroids.gif.GifImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/space_video"
-        android:scaleType="fitXY"/>
+        android:scaleType="fitXY"
+        android:src="@drawable/space_video" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ImposterLogo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="41dp"
-        android:layout_marginBottom="315dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="46dp"
+        android:layout_marginEnd="382dp"
+        android:layout_marginBottom="310dp"
         android:fontFamily="@font/aldrich"
         android:text="Imposter Finder"
         android:textColor="#FFFFFF"
         android:textSize="38dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/startGameButton"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="139dp"
+        android:layout_marginEnd="393dp"
+        android:layout_marginBottom="224dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/aldrich"
+        android:text="START GAME"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/optionsButton"
+        android:layout_width="300dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="203dp"
+        android:layout_marginEnd="393dp"
+        android:layout_marginBottom="161dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/aldrich"
+        android:text="OPTIONS"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/helpButton"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="266dp"
+        android:layout_marginEnd="393dp"
+        android:layout_marginBottom="97dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/aldrich"
+        android:text="HELP"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="528dp"
+        android:layout_height="242dp"
+        android:layout_marginStart="292dp"
+        android:layout_marginTop="186dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.292"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/all" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

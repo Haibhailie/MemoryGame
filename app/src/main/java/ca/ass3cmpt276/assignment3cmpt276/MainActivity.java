@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.google.gson.Gson;
+
 import android.view.WindowManager;
 import android.widget.Button;
 
@@ -17,7 +18,6 @@ import model.optionsClass;
 
 public class MainActivity extends AppCompatActivity {
 
-    private boolean sharedPrefInitialized = false;
     private String gameGrid;
     private int gameImposterCount;
     private int highScore;
@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        final SharedPreferences.Editor editor = preferences.edit();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Intent splashScreen = new Intent(this, IntroScreen.class);
@@ -44,17 +46,17 @@ public class MainActivity extends AppCompatActivity {
         Button optionsButton = findViewById(R.id.optionsButton);
         Button startButton = findViewById(R.id.startButton);
         final Button helpButton = findViewById(R.id.helpButton);
+        Log.d(TAG, "Main Activity: Have the following values: " + options.getGrid() + " and " + options.getImpostorCount());
 
         optionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = OptionsActivity.makeLaunchIntent(MainActivity.this, options.getGrid(), options.getImpostorCount(), options.getGamesPlayed(), options.getHighScore());
-                //v.getContext().startActivity(i);
-                startActivityForResult(i,1);
+                Intent i = OptionsActivity.makeLaunchIntent(MainActivity.this);
+                v.getContext().startActivity(i);
                 Log.d(TAG, "onCreate: Returned to main activity. From Options");
             }
         });
-
+        Log.d(TAG, "Main Activity: After changing options has the values: " + options.getGrid() + " and " + options.getImpostorCount());
         helpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,25 +66,26 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void checkSharedPreferences(){
+    private void checkSharedPreferences() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = preferences.edit();
-        Gson gson = new Gson();
-        String checkPreferences = preferences.getString("optionsClass","Empty");
-        if(checkPreferences.compareTo("Empty")==0){
-
-            gameGrid="b";
-            gameImposterCount=6;
-            gamesPlayed=0;
-            highScore=0;
-
+        //editor.clear();
+        //editor.commit();
+        String checkPreferences = preferences.getString("gridOption", "Empty");
+        if (checkPreferences.compareTo("Empty") == 0) {
+            gameGrid = "a";
+            gameImposterCount = 6;
+            gamesPlayed = 0;
+            highScore = 0;
             options.setGrid("a");
             options.setImpostorCount(6);
             options.setGamesPlayed(0);
             options.setHighScore(0);
-        }
-        else{
-            options = gson.fromJson(checkPreferences, optionsClass.class);
+        } else {
+            options.setGrid(preferences.getString("gridOption", "Empty"));
+            options.setImpostorCount(preferences.getInt("countOption",0));
+            options.setHighScore(preferences.getInt("highScore",0));
+            options.setGamesPlayed(preferences.getInt("timesPlayed",0));
             gameGrid = options.getGrid();
             gameImposterCount = options.getImpostorCount();
             highScore = options.getHighScore();

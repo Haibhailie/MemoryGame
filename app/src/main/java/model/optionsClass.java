@@ -5,8 +5,8 @@ public class optionsClass {
     private int impostorCount;
     private int highScore;
     private int gamesPlayed;
-
     private static optionsClass instance;
+
     private optionsClass(){
         //Private constructor
     }

@@ -44,7 +44,10 @@ public class MainActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         checkSharedPreferences();
-        startActivity(splashScreen);
+        View currentView = this.findViewById(android.R.id.content);
+        Intent splash = IntroScreen.makeLaunchIntent(MainActivity.this);
+        currentView.getContext().startActivity(splash);
+        //startActivity(splashScreen);
         Button optionsButton = findViewById(R.id.optionsButton);
         Button startButton = findViewById(R.id.startButton);
         final Button helpButton = findViewById(R.id.helpButton);
@@ -64,6 +67,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = helpScreen.makeLaunchIntent(MainActivity.this);
                 v.getContext().startActivity(i);
+            }
+        });
+
+        Button exitButton = findViewById(R.id.exitButton);
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

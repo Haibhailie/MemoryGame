@@ -271,10 +271,17 @@ public class OptionsActivity extends AppCompatActivity {
     }
 
     private void initializeBackButton() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        final SharedPreferences.Editor editor = preferences.edit();
         Button backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                editor.putString("gridOption", options.getGrid());
+                editor.putInt("countOption", options.getImpostorCount());
+                editor.putString("highScore", options.getHighScore()[0] + "," + options.getHighScore()[1] + "," + options.getHighScore()[2] + "," + options.getHighScore()[3]);
+                editor.putInt("timesPlayed", options.getGamesPlayed());
+                editor.commit();
                 finish();
             }
         });

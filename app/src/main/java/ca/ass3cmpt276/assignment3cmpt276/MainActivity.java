@@ -79,8 +79,8 @@ public class MainActivity extends AppCompatActivity {
     private void checkSharedPreferences() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.clear();
-        editor.commit();
+        //editor.clear();
+        //editor.commit();
         String checkPreferences = preferences.getString("gridOption", "Empty");
         if (checkPreferences.compareTo("Empty") == 0) {
             gameGrid = "a";

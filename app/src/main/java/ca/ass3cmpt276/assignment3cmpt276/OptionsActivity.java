@@ -12,21 +12,26 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import model.optionsClass;
+
+import static java.lang.Thread.sleep;
 
 public class OptionsActivity extends AppCompatActivity {
 
     Button activeGridButton;
     Button activeNumButton;
+    private int highScore[] = new int[4];
 
     private optionsClass options;//singleton class that stores the options
     private final String TAG = "OptionsActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        options=optionsClass.getInstance();
+        options = optionsClass.getInstance();
+        highScore = options.getHighScore();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options);
         getSupportActionBar().hide();
@@ -39,22 +44,97 @@ public class OptionsActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         initializeBackButton();
-        Log.d(TAG, "Options Activity: Has the following values: "+options.getGrid()+" and "+options.getImpostorCount());
+        Log.d(TAG, "Options Activity: Has the following values: " + options.getGrid() + " and " + options.getImpostorCount());
         getActiveButtons();
-        activeGridButton=initializeGridButtons(activeGridButton);
-        activeNumButton=initializeNumberButtons(activeNumButton);
+        activeGridButton = initializeGridButtons(activeGridButton);
+        activeNumButton = initializeNumberButtons(activeNumButton);
         checkGridButtonOnClick();
         checkNumButtonOnClick();
+        setResetButtons();
     }
 
-    private void checkNumButtonOnClick(){
+    private void setResetButtons() {
+
+        final Button highA = findViewById(R.id.highA);
+        highA.setText(String.valueOf(options.getHighScore()[0]));
+        highA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (options.getHighScore()[0] != 0) {
+                    highA.setBackground(getResources().getDrawable(R.drawable.delete_button));
+                    highA.setText(String.valueOf(0));
+                    options.setHighScore(new int[]{0, highScore[1], highScore[2], highScore[3]});
+                } else
+                    Toast.makeText(getApplicationContext(), "High score for 4 x 6 is already 0!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        final Button highB = findViewById(R.id.highB);
+        highB.setText(String.valueOf(options.getHighScore()[1]));
+        highB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (options.getHighScore()[1] != 0) {
+                    highB.setBackground(getResources().getDrawable(R.drawable.delete_button));
+                    highB.setText(String.valueOf(0));
+                    options.setHighScore(new int[]{highScore[0], 0, highScore[2], highScore[3]});
+                } else
+                    Toast.makeText(getApplicationContext(), "High score for 5 x 10 is already 0!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        final Button highC = findViewById(R.id.highC);
+        highC.setText(String.valueOf(options.getHighScore()[2]));
+        highC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (options.getHighScore()[2] != 0) {
+                    highC.setBackground(getResources().getDrawable(R.drawable.delete_button));
+                    highC.setText(String.valueOf(0));
+                    options.setHighScore(new int[]{highScore[0], highScore[1], 0, highScore[3]});
+                } else
+                    Toast.makeText(getApplicationContext(), "High score for 6 x 15 is already 0!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        final Button highD = findViewById(R.id.highD);
+        highD.setText(String.valueOf(options.getHighScore()[3]));
+        highD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (options.getHighScore()[3] != 0) {
+                    highD.setBackground(getResources().getDrawable(R.drawable.delete_button));
+                    highD.setText(String.valueOf(0));
+                    options.setHighScore(new int[]{highScore[0], highScore[1], highScore[2], 0});
+                } else
+                    Toast.makeText(getApplicationContext(), "High score for 7 x 18 is already 0!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        final Button gamesPlayed = findViewById(R.id.numGames);
+        gamesPlayed.setText(String.valueOf(options.getGamesPlayed()));
+        gamesPlayed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (options.getGamesPlayed() != 0) {
+                    gamesPlayed.setBackground(getResources().getDrawable(R.drawable.delete_button));
+                    gamesPlayed.setText(String.valueOf(0));
+                    options.setGamesPlayed(0);
+                } else
+                    Toast.makeText(getApplicationContext(), "Total games played is already 0!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    private void checkNumButtonOnClick() {
 
         final Button numA = findViewById(R.id.no6);
         numA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 options.setImpostorCount(6);
-                activeNumButton=initializeNumberButtons(activeNumButton);
+                activeNumButton = initializeNumberButtons(activeNumButton);
             }
         });
         final Button numB = findViewById(R.id.no10);
@@ -62,7 +142,7 @@ public class OptionsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 options.setImpostorCount(10);
-                activeNumButton=initializeNumberButtons(activeNumButton);
+                activeNumButton = initializeNumberButtons(activeNumButton);
             }
         });
         final Button numC = findViewById(R.id.no15);
@@ -70,7 +150,7 @@ public class OptionsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 options.setImpostorCount(15);
-                activeNumButton=initializeNumberButtons(activeNumButton);
+                activeNumButton = initializeNumberButtons(activeNumButton);
             }
         });
         final Button numD = findViewById(R.id.no20);
@@ -78,18 +158,18 @@ public class OptionsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 options.setImpostorCount(20);
-                activeNumButton=initializeNumberButtons(activeNumButton);
+                activeNumButton = initializeNumberButtons(activeNumButton);
             }
         });
     }
 
-    private void checkGridButtonOnClick(){
+    private void checkGridButtonOnClick() {
         final Button gridA = findViewById(R.id.x46);
         gridA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 options.setGrid("a");
-                activeGridButton=initializeGridButtons(activeGridButton);
+                activeGridButton = initializeGridButtons(activeGridButton);
             }
         });
         final Button gridB = findViewById(R.id.x510);
@@ -97,7 +177,7 @@ public class OptionsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 options.setGrid("b");
-                activeGridButton=initializeGridButtons(activeGridButton);
+                activeGridButton = initializeGridButtons(activeGridButton);
             }
         });
         final Button gridC = findViewById(R.id.x615);
@@ -105,7 +185,7 @@ public class OptionsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 options.setGrid("c");
-                activeGridButton=initializeGridButtons(activeGridButton);
+                activeGridButton = initializeGridButtons(activeGridButton);
             }
         });
         final Button gridD = findViewById(R.id.x718);
@@ -113,7 +193,7 @@ public class OptionsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 options.setGrid("d");
-                activeGridButton=initializeGridButtons(activeGridButton);
+                activeGridButton = initializeGridButtons(activeGridButton);
             }
         });
     }
@@ -199,7 +279,7 @@ public class OptionsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 editor.putString("gridOption", options.getGrid());
                 editor.putInt("countOption", options.getImpostorCount());
-                editor.putInt("highScore", options.getHighScore());
+                editor.putString("highScore", options.getHighScore()[0] + "," + options.getHighScore()[1] + "," + options.getHighScore()[2] + "," + options.getHighScore()[3]);
                 editor.putInt("timesPlayed", options.getGamesPlayed());
                 editor.commit();
                 finish();

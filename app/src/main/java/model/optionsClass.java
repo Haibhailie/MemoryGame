@@ -3,7 +3,8 @@ package model;
 public class optionsClass {
     private String grid;
     private int impostorCount;
-    private int highScore;
+    private int highScore[];
+
     private int gamesPlayed;
     private static optionsClass instance;
 
@@ -33,11 +34,11 @@ public class optionsClass {
         this.impostorCount = impostorCount;
     }
 
-    public int getHighScore() {
+    public int[] getHighScore() {
         return highScore;
     }
 
-    public void setHighScore(int highScore) {
+    public void setHighScore(int[] highScore) {
         this.highScore = highScore;
     }
 

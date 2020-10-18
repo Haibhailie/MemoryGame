@@ -12,14 +12,38 @@
         android:scaleType="fitXY"
         android:src="@drawable/space_video" />
 
+    <ImageView
+        android:id="@+id/ImposterLogoB"
+        android:layout_width="61dp"
+        android:layout_height="75dp"
+        android:layout_marginEnd="670dp"
+        android:layout_marginBottom="336dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/orange" />
+
+    <ImageView
+        android:id="@+id/ImposterLogo"
+        android:layout_width="61dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="336dp"
+        android:layout_marginEnd="670dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/blue" />
+
     <Button
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="585dp"
-        android:layout_marginTop="53dp"
-        android:layout_marginEnd="58dp"
-        android:layout_marginBottom="310dp"
+        android:layout_marginStart="627dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="343dp"
         android:background="@drawable/button_background"
         android:fontFamily="@font/aldrich"
         android:text="BACK"
@@ -35,13 +59,13 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="38dp"
-        android:layout_marginTop="46dp"
-        android:layout_marginEnd="382dp"
-        android:layout_marginBottom="310dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="515dp"
+        android:layout_marginBottom="340dp"
         android:fontFamily="@font/aldrich"
         android:text="HELP"
         android:textColor="#FFFFFF"
-        android:textSize="38sp"
+        android:textSize="38dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -66,23 +90,86 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.178" />
+        app:layout_constraintVertical_bias="0.75" />
 
     <TextView
         android:layout_width="630dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="38dp"
-        android:layout_marginTop="224dp"
+        android:layout_marginTop="178dp"
         android:layout_marginEnd="63dp"
-        android:layout_marginBottom="161dp"
+        android:layout_marginBottom="207dp"
         android:fontFamily="@font/aldrich"
         android:text="The resources used in this project are as follows: "
         android:textColor="#FFFFFF"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <TextView
+        android:id="@+id/backgroundHyperlink"
+        android:layout_width="630dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="204dp"
+        android:layout_marginEnd="63dp"
+        android:layout_marginBottom="181dp"
+        android:autoLink="web"
+        android:fontFamily="@font/aldrich"
+        android:text="@string/backgroundAnimatedTextLink"
+        android:textColor="#FFFFFF"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/characterPNG"
+        android:layout_width="630dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="247dp"
+        android:layout_marginEnd="63dp"
+        android:layout_marginBottom="105dp"
+        android:autoLink="web"
+        android:fontFamily="@font/aldrich"
+        android:text="@string/characterPNGLink"
+        android:textColor="#FFFFFF"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/homeScreenImage"
+        android:layout_width="630dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="306dp"
+        android:layout_marginEnd="63dp"
+        android:layout_marginBottom="62dp"
+        android:autoLink="web"
+        android:fontFamily="@font/aldrich"
+        android:text="@string/homeScreenImage"
+        android:textColor="#FFFFFF"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

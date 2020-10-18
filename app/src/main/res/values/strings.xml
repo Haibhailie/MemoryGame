@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Imposter Finder</string>
+    <string name="backgroundAnimatedLink">Background Animation:<a href="https://tenor.com/view/background-image-galaxy-universe-stars-gif-15673753"> Tenor - Narender123</a></string>
+    <string name="backgroundAnimatedTextLink">Background Animation (Tenor - Narender123): https://tenor.com/view/background-image-galaxy-universe-stars-gif-15673753</string>
+    <string name="characterPNGLink">Among Us Character designs (u/memeymatt): https://www.reddit.com/r/AmongUs/comments/iut5y2/couldnt_find_many_pngs_of_the_among_us_characters</string>
+    <string name="homeScreenImage">Home Screen Image (Pm58790): https://pm-universe.fandom.com/wiki/Crewmate?file=AmongUs_MultiPlay.png</string>
 </resources>

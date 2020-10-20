@@ -11,10 +11,10 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".GameSpace"
-            android:label="@string/title_activity_game_space"
+            android:label="activity_game_space"
             android:screenOrientation="landscape"
             android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".IntroScreen" />
         <activity android:name=".OptionsActivity" />
         <activity android:name=".helpScreen" />

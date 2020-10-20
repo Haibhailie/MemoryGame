@@ -1,13 +1,11 @@
 package ca.ass3cmpt276.assignment3cmpt276;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 
@@ -17,26 +15,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.Switch;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import java.text.StringCharacterIterator;
-
-import ca.ass3cmpt276.assignment3cmpt276.model.ImpostorGrid;
+import ca.ass3cmpt276.assignment3cmpt276.model.optionsClass;
 
 public class GameSpace extends AppCompatActivity {
 
-    private static final int NUM_ROWS = 4;
-    private static final int NUM_COLS = 6;
     private static final int DEFAULT_ROW = 4;
     private static final int DEFAULT_COLUMN = 6;
     private static final int DEFAULT_IMPOSTOR_COUNT = 6;
     private int impostorIcon = 0;
 
-    Button[][] buttons = new Button[NUM_ROWS][NUM_COLS];
-    ImpostorGrid impostorGrid;
+    Button[][] buttons;
+    optionsClass optionsClass;
     private int count;
 
     @Override
@@ -51,9 +44,10 @@ public class GameSpace extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
-        impostorGrid = ImpostorGrid.getInstance(DEFAULT_ROW ,
+        optionsClass = optionsClass.getInstance(DEFAULT_ROW ,
                 DEFAULT_COLUMN , DEFAULT_IMPOSTOR_COUNT);
-        impostorGrid.reset();
+        buttons = new Button[optionsClass.getRow()][optionsClass.getColumn()];
+        optionsClass.reset();
         populateButtons();
         displayStats();
     }
@@ -84,15 +78,15 @@ public class GameSpace extends AppCompatActivity {
     private void displayStats() {
         TextView textFoundImpostors = (TextView) findViewById(R.id.textFoundImpostors);
         String impostorStatDisplay = getString(R.string.found);
-        impostorStatDisplay = impostorStatDisplay.concat(String.valueOf(impostorGrid.getImpostorsFound()));
+        impostorStatDisplay = impostorStatDisplay.concat(String.valueOf(optionsClass.getImpostorsFound()));
         impostorStatDisplay = impostorStatDisplay.concat(getString(R.string.of));
-        impostorStatDisplay = impostorStatDisplay.concat(String.valueOf(impostorGrid.getImpostorCount()));
+        impostorStatDisplay = impostorStatDisplay.concat(String.valueOf(optionsClass.getImpostorCount()));
         impostorStatDisplay = impostorStatDisplay.concat(getString(R.string.impostors));
 
         textFoundImpostors.setText(impostorStatDisplay);
 
         TextView textScanUsed = (TextView) findViewById(R.id.textScansUsed);
-        String scansUsedDisplay = String.valueOf(impostorGrid.getScanCount());
+        String scansUsedDisplay = String.valueOf(optionsClass.getScanCount());
         scansUsedDisplay = scansUsedDisplay.concat(getString(R.string.scans_used));
         textScanUsed.setText(scansUsedDisplay);
     }
@@ -100,7 +94,7 @@ public class GameSpace extends AppCompatActivity {
     private void populateButtons() {
         TableLayout table = (TableLayout) findViewById(R.id.tableForMines);
 
-        for (int row = 0; row < NUM_ROWS; row ++){
+        for (int row = 0; row < optionsClass.getRow(); row ++){
             TableRow tableRow = new TableRow(this);
             tableRow.setLayoutParams(new TableLayout.LayoutParams(
                     TableLayout.LayoutParams.MATCH_PARENT,
@@ -108,7 +102,7 @@ public class GameSpace extends AppCompatActivity {
                     1.0f));
             table.addView(tableRow);
 
-            for(int col = 0; col < NUM_COLS; col ++){
+            for(int col = 0; col < optionsClass.getColumn(); col ++){
                 final int FINAL_ROW = row;
                 final int FINAL_COL = col;
                 Button button = new Button(this);
@@ -139,7 +133,7 @@ public class GameSpace extends AppCompatActivity {
         Button button = buttons[row][col];
         // Lock button sizes:
         lockButtonSizes();
-        int checkAction = impostorGrid.onGridClicked(row, col);
+        int checkAction = optionsClass.onGridClicked(row, col);
 
         if(checkAction == 1){
             // display impostor
@@ -155,7 +149,7 @@ public class GameSpace extends AppCompatActivity {
 
         else if(checkAction == 0){
             // display number of impostors in rows and columns
-            button.setText(""+ impostorGrid.getImpostorInRowsAndColumns(row, col));
+            button.setText(""+ optionsClass.getImpostorInRowsAndColumns(row, col));
             button.setTextColor(getResources().getColor(R.color.design_default_color_background, null));
             button.setPadding(0, 0, 0, 0);
         }
@@ -190,10 +184,10 @@ public class GameSpace extends AppCompatActivity {
     }
 
     private void checkIfWon() {
-        if(impostorGrid.getImpostorsFound() == impostorGrid.getImpostorCount()){
+        if(optionsClass.getImpostorsFound() == optionsClass.getImpostorCount()){
             AlertDialog.Builder ab = new AlertDialog.Builder(this);
             ab.setCancelable(false);
-            ab.setTitle("Congratulations! Your score is " + impostorGrid.getScanCount());
+            ab.setTitle("Congratulations! Your score is " + optionsClass.getScanCount());
             ab.setMessage("Return to Home Screen? ");
             ab.setPositiveButton("yes", new DialogInterface.OnClickListener() {
                 @Override
@@ -206,7 +200,7 @@ public class GameSpace extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
-                    impostorGrid.reset();
+                    optionsClass.reset();
                     Intent intent = getIntent();
                     finish();
                     startActivity(intent);
@@ -219,25 +213,25 @@ public class GameSpace extends AppCompatActivity {
 
     private void updateAllGrid(int row, int col) {
         Button button;
-        for(int c = 0; c < NUM_COLS; c ++){
-            if(impostorGrid.getGridValue(row, c) == 2) {
+        for(int c = 0; c < optionsClass.getColumn(); c ++){
+            if(optionsClass.getGridValue(row, c) == 2) {
                 button = buttons[row][c];
-                button.setText("" + impostorGrid.getImpostorInRowsAndColumns(row, c));
+                button.setText("" + optionsClass.getImpostorInRowsAndColumns(row, c));
                 button.setPadding(0, 0, 0, 0);
             }
         }
-        for(int r = 0; r < NUM_ROWS; r++){
-            if(impostorGrid.getGridValue(r, col) == 2) {
+        for(int r = 0; r < optionsClass.getRow(); r++){
+            if(optionsClass.getGridValue(r, col) == 2) {
                 button = buttons[r][col];
-                button.setText("" + impostorGrid.getImpostorInRowsAndColumns(r, col));
+                button.setText("" + optionsClass.getImpostorInRowsAndColumns(r, col));
                 button.setPadding(0, 0, 0, 0);
             }
         }
     }
 
     private void lockButtonSizes() {
-        for(int i = 0; i < NUM_ROWS; i++){
-            for(int j = 0; j < NUM_COLS; j++){
+        for(int i = 0; i < optionsClass.getRow(); i++){
+            for(int j = 0; j < optionsClass.getColumn(); j++){
                 Button button = buttons[i][j];
 
                 int width = button.getWidth();

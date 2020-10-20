@@ -13,7 +13,8 @@ import android.widget.Button;
 
 import java.util.StringTokenizer;
 
-import model.optionsClass;
+import ca.ass3cmpt276.assignment3cmpt276.model.optionsClass;
+
 /*
 * This is the main activity class of the game which has the following features:
 * Calls the splash screen (intro screen) on startup
@@ -24,10 +25,10 @@ import model.optionsClass;
 public class MainActivity extends AppCompatActivity {
 
     private String gameGrid;
-    private int gameImposterCount;
+    private int gameImpostorCount;
     private int highScore[] = new int[4];
     private int gamesPlayed;
-    private optionsClass options = optionsClass.getInstance();
+    private optionsClass options = optionsClass.getInstance(4, 6, 6);
     private final String TAG = "Main Activity";
 
     @Override
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         Intent splash = IntroScreen.makeLaunchIntent(MainActivity.this);
         currentView.getContext().startActivity(splash);
 
+
         Button optionsButton = findViewById(R.id.optionsButton);
         Button startButton = findViewById(R.id.startGameButton);
         final Button helpButton = findViewById(R.id.helpButton);
@@ -64,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mpStartGame.start();
+                Intent i = GameSpace.makeLaunchIntent(MainActivity.this);
+                v.getContext().startActivity(i);
             }
         });
 
@@ -76,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "onCreate: Returned to main activity. From Options");
             }
         });
-        Log.d(TAG, "Main Activity: After changing options has the values: " + options.getGrid() + " and " + options.getImpostorCount());
+        Log.d(TAG, "Main Activity: After changing options has the values: " + options.getGridOption() + " and " + options.getImpostorCount());
 
         helpButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +101,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void setupStartAnimation() {
+
+    }
+
     private void checkSharedPreferences() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = preferences.edit();
@@ -105,15 +113,15 @@ public class MainActivity extends AppCompatActivity {
         String checkPreferences = preferences.getString("gridOption", "Empty");
         if (checkPreferences.compareTo("Empty") == 0) {
             gameGrid = "a";
-            gameImposterCount = 6;
+            gameImpostorCount = 6;
             gamesPlayed = 0;
             highScore = new int[]{0, 0, 0, 0};
-            options.setGrid("a");
+            options.setGridOption("a");
             options.setImpostorCount(6);
             options.setGamesPlayed(0);
             options.setHighScore(new int[]{0, 0, 0, 0});
         } else {
-            options.setGrid(preferences.getString("gridOption", "Empty"));
+            options.setGridOption(preferences.getString("gridOption", "Empty"));
             options.setImpostorCount(preferences.getInt("countOption",0));
             String highScoreString = preferences.getString("highScore","0,0,0,0");
             StringTokenizer st = new StringTokenizer(highScoreString, ",");
@@ -123,8 +131,8 @@ public class MainActivity extends AppCompatActivity {
             }
             options.setHighScore(highScore);
             options.setGamesPlayed(preferences.getInt("timesPlayed",0));
-            gameGrid = options.getGrid();
-            gameImposterCount = options.getImpostorCount();
+            gameGrid = options.getGridOption();
+            gameImpostorCount = options.getImpostorCount();
             highScore = options.getHighScore();
             gamesPlayed = options.getGamesPlayed();
         }

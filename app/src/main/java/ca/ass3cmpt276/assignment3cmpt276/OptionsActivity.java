@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -13,11 +14,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
-import android.widget.Toolbar;
-
 import model.optionsClass;
-
-import static java.lang.Thread.sleep;
 
 public class OptionsActivity extends AppCompatActivity {
 
@@ -60,6 +57,7 @@ public class OptionsActivity extends AppCompatActivity {
         highA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                playSoundOnClick();
                 if (options.getHighScore()[0] != 0) {
                     highA.setBackground(getResources().getDrawable(R.drawable.delete_button));
                     highA.setText(String.valueOf(0));
@@ -74,6 +72,7 @@ public class OptionsActivity extends AppCompatActivity {
         highB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                playSoundOnClick();
                 if (options.getHighScore()[1] != 0) {
                     highB.setBackground(getResources().getDrawable(R.drawable.delete_button));
                     highB.setText(String.valueOf(0));
@@ -88,6 +87,7 @@ public class OptionsActivity extends AppCompatActivity {
         highC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                playSoundOnClick();
                 if (options.getHighScore()[2] != 0) {
                     highC.setBackground(getResources().getDrawable(R.drawable.delete_button));
                     highC.setText(String.valueOf(0));
@@ -102,6 +102,7 @@ public class OptionsActivity extends AppCompatActivity {
         highD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                playSoundOnClick();
                 if (options.getHighScore()[3] != 0) {
                     highD.setBackground(getResources().getDrawable(R.drawable.delete_button));
                     highD.setText(String.valueOf(0));
@@ -116,6 +117,7 @@ public class OptionsActivity extends AppCompatActivity {
         gamesPlayed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                playSoundOnClick();
                 if (options.getGamesPlayed() != 0) {
                     gamesPlayed.setBackground(getResources().getDrawable(R.drawable.delete_button));
                     gamesPlayed.setText(String.valueOf(0));
@@ -127,12 +129,17 @@ public class OptionsActivity extends AppCompatActivity {
 
     }
 
+    private void playSoundOnClick(){
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.button_click_sound);
+        mp.start();
+    }
     private void checkNumButtonOnClick() {
 
         final Button numA = findViewById(R.id.no6);
         numA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                playSoundOnClick();
                 options.setImpostorCount(6);
                 activeNumButton = initializeNumberButtons(activeNumButton);
             }
@@ -141,6 +148,7 @@ public class OptionsActivity extends AppCompatActivity {
         numB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                playSoundOnClick();
                 options.setImpostorCount(10);
                 activeNumButton = initializeNumberButtons(activeNumButton);
             }
@@ -149,6 +157,7 @@ public class OptionsActivity extends AppCompatActivity {
         numC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                playSoundOnClick();
                 options.setImpostorCount(15);
                 activeNumButton = initializeNumberButtons(activeNumButton);
             }
@@ -157,6 +166,7 @@ public class OptionsActivity extends AppCompatActivity {
         numD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                playSoundOnClick();
                 options.setImpostorCount(20);
                 activeNumButton = initializeNumberButtons(activeNumButton);
             }
@@ -168,6 +178,7 @@ public class OptionsActivity extends AppCompatActivity {
         gridA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                playSoundOnClick();
                 options.setGrid("a");
                 activeGridButton = initializeGridButtons(activeGridButton);
             }
@@ -176,6 +187,7 @@ public class OptionsActivity extends AppCompatActivity {
         gridB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                playSoundOnClick();
                 options.setGrid("b");
                 activeGridButton = initializeGridButtons(activeGridButton);
             }
@@ -184,6 +196,7 @@ public class OptionsActivity extends AppCompatActivity {
         gridC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                playSoundOnClick();
                 options.setGrid("c");
                 activeGridButton = initializeGridButtons(activeGridButton);
             }
@@ -192,6 +205,7 @@ public class OptionsActivity extends AppCompatActivity {
         gridD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                playSoundOnClick();
                 options.setGrid("d");
                 activeGridButton = initializeGridButtons(activeGridButton);
             }
@@ -277,6 +291,7 @@ public class OptionsActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                playSoundOnClick();
                 editor.putString("gridOption", options.getGrid());
                 editor.putInt("countOption", options.getImpostorCount());
                 editor.putString("highScore", options.getHighScore()[0] + "," + options.getHighScore()[1] + "," + options.getHighScore()[2] + "," + options.getHighScore()[3]);

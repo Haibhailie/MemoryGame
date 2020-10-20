@@ -1,21 +1,17 @@
 package ca.ass3cmpt276.assignment3cmpt276;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import java.lang.Object;
-
 
 public class IntroScreen extends AppCompatActivity {
 
@@ -26,6 +22,7 @@ public class IntroScreen extends AppCompatActivity {
         getSupportActionBar().hide();
         Button startButton = findViewById(R.id.startButton);
 
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.button_click_sound);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -41,7 +38,7 @@ public class IntroScreen extends AppCompatActivity {
         final Thread splashThread = new Thread() {
             public void run() {
                 try {
-                    sleep(4000);
+                    sleep(8000);
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -54,6 +51,7 @@ public class IntroScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+                mp.start();
             }
         });
         splashThread.start();

@@ -2,6 +2,7 @@ package model;
 
 //Singleton class
 public class optionsClass {
+
     private String grid;
     private int impostorCount;
     private int highScore[];

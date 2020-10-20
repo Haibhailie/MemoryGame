@@ -74,7 +74,7 @@ public class OptionsActivity extends AppCompatActivity {
                     highA.setText(String.valueOf(0));
                     options.setHighScore(new int[]{0, highScore[1], highScore[2], highScore[3]});
                 } else
-                    Toast.makeText(getApplicationContext(), "High score for 4 x 6 is already 0!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.high_score_4X6_0, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -89,7 +89,7 @@ public class OptionsActivity extends AppCompatActivity {
                     highB.setText(String.valueOf(0));
                     options.setHighScore(new int[]{highScore[0], 0, highScore[2], highScore[3]});
                 } else
-                    Toast.makeText(getApplicationContext(), "High score for 5 x 10 is already 0!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.high_score_5X10_0, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -104,7 +104,7 @@ public class OptionsActivity extends AppCompatActivity {
                     highC.setText(String.valueOf(0));
                     options.setHighScore(new int[]{highScore[0], highScore[1], 0, highScore[3]});
                 } else
-                    Toast.makeText(getApplicationContext(), "High score for 6 x 15 is already 0!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.high_score_6X15_0, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -119,7 +119,7 @@ public class OptionsActivity extends AppCompatActivity {
                     highD.setText(String.valueOf(0));
                     options.setHighScore(new int[]{highScore[0], highScore[1], highScore[2], 0});
                 } else
-                    Toast.makeText(getApplicationContext(), "High score for 7 x 18 is already 0!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.high_score_7X18_0, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -134,7 +134,7 @@ public class OptionsActivity extends AppCompatActivity {
                     gamesPlayed.setText(String.valueOf(0));
                     options.resetGamesPlayed();
                 } else
-                    Toast.makeText(getApplicationContext(), "Total games played is already 0!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.Total_games_0, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -144,8 +144,8 @@ public class OptionsActivity extends AppCompatActivity {
         final MediaPlayer mp = MediaPlayer.create(this, R.raw.button_click_sound);
         mp.start();
     }
-    private void checkNumButtonOnClick() {
 
+    private void checkNumButtonOnClick() {
         final Button numA = findViewById(R.id.no6);
         numA.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -246,7 +246,7 @@ public class OptionsActivity extends AppCompatActivity {
         }
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
+
     private Button initializeGridButtons(Button activeGridButton) {
 
         activeGridButton.setBackground(getResources().getDrawable(R.drawable.button_background));

@@ -20,4 +20,25 @@
     <string name="of">\ of \</string>
     <string name="impostors">\ impostors \</string>
     <string name="scans_used">\ Scans used</string>
+    <string name="helpText">HELP</string>
+    <string name="in_this_game_you_find_all_the_imposters_hiding_in_our_spaceship_check_each_door_one_by_one_to_see_if_they_re_hidden_behind_it_once_you_catch_them_they_tell_you_how_many_more_are_remaining_in_the_row_and_column_they_re_present_in_so_get_going_and_find_the_imposters_so_we_can_make_our_way_home">In this game, you find all the imposters hiding in our spaceship. Check each door one by one to see if they\'re hidden behind it. Once you catch them, they tell you how many more are remaining in the row and column they\'re present in. So get going and find the imposters so we can make our way home.</string>
+    <string name="the_resources_used_in_this_project_are_as_follows">The resources used in this project are as follows:</string>
+    <string name="backText">BACK</string>
+    <string name="shashank_thanalapati">Shashank Thanalapati</string>
+    <string name="shubh_kumar_mall">Shubh Kumar Mall</string>
+    <string name="start">START</string>
+    <string name="todo">TODO</string>
+    <string name="map_size_r_x_c">Map Size (R x C):</string>
+    <string name="_5_x_10">5 x 10</string>
+    <string name="_6_x_15">6 x 15</string>
+    <string name="_7_x_18">7 x 18</string>
+    <string name="_4_x_6">4 x 6</string>
+    <string name="number_of_imposters">Number Of Imposters:</string>
+    <string name="_15">15</string>
+    <string name="_6">6</string>
+    <string name="_10">10</string>
+    <string name="_20">20</string>
+    <string name="reset_high_scores">Reset High Scores:</string>
+    <string name="_0">0</string>
+    <string name="no_of_games_click_to_reset">No. of games: (click to reset)</string>
 </resources>

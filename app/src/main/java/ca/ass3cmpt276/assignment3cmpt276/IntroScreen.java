@@ -58,7 +58,7 @@ public class IntroScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 splashThread.interrupt();
-                finish();
+                //finish();
                 mp.start();
             }
         });

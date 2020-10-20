@@ -22,6 +22,7 @@ import android.widget.TextView;
 * They are hyperlinks, so can be clicked
 * Hyperlinking takes place in the strings.xml file and the on clickable is in the layout, all this class does is make them blue
  */
+
 public class helpScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

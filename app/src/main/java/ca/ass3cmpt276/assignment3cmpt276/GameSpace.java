@@ -12,6 +12,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -30,7 +31,6 @@ public class GameSpace extends AppCompatActivity {
 
     private  Button[][] buttons;
     private  optionsClass optionsClass;
-    private int count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,7 +119,6 @@ public class GameSpace extends AppCompatActivity {
                         1.0f));
                 button.setBackgroundResource(R.drawable.button_background);
 
-
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -190,11 +189,43 @@ public class GameSpace extends AppCompatActivity {
         }
     }
 
+    private void checkHighScores(){
+
+        if(optionsClass.getGridOption().compareTo("a")==0){
+            if(optionsClass.getHighScore()[0]==0)
+                optionsClass.setHighScore(new int[]{optionsClass.getScanCount(), optionsClass.getHighScore()[1], optionsClass.getHighScore()[2], optionsClass.getHighScore()[3]});
+            else if(optionsClass.getScanCount()<optionsClass.getHighScore()[0])
+                optionsClass.setHighScore(new int[]{optionsClass.getScanCount(), optionsClass.getHighScore()[1], optionsClass.getHighScore()[2], optionsClass.getHighScore()[3]});
+        }
+
+        if(optionsClass.getGridOption().compareTo("b")==0){
+            if(optionsClass.getHighScore()[1]==0)
+                optionsClass.setHighScore(new int[]{optionsClass.getHighScore()[0], optionsClass.getScanCount(), optionsClass.getHighScore()[2], optionsClass.getHighScore()[3]});
+            else if(optionsClass.getScanCount()<optionsClass.getHighScore()[1])
+                optionsClass.setHighScore(new int[]{optionsClass.getHighScore()[0], optionsClass.getScanCount(), optionsClass.getHighScore()[2], optionsClass.getHighScore()[3]});
+        }
+
+        if(optionsClass.getGridOption().compareTo("c")==0){
+            if(optionsClass.getHighScore()[2]==0)
+                optionsClass.setHighScore(new int[]{optionsClass.getHighScore()[0], optionsClass.getHighScore()[1], optionsClass.getScanCount(), optionsClass.getHighScore()[3]});
+            else if(optionsClass.getScanCount()<optionsClass.getHighScore()[2])
+                optionsClass.setHighScore(new int[]{optionsClass.getHighScore()[0], optionsClass.getHighScore()[1], optionsClass.getScanCount(), optionsClass.getHighScore()[3]});
+        }
+
+        if(optionsClass.getGridOption().compareTo("d")==0){
+            if(optionsClass.getHighScore()[3]==0)
+                optionsClass.setHighScore(new int[]{optionsClass.getHighScore()[0], optionsClass.getHighScore()[1], optionsClass.getHighScore()[2], optionsClass.getScanCount()});
+            else if(optionsClass.getScanCount()<optionsClass.getHighScore()[3])
+                optionsClass.setHighScore(new int[]{optionsClass.getHighScore()[0], optionsClass.getHighScore()[1], optionsClass.getHighScore()[2], optionsClass.getScanCount()});
+        }
+    }
+
     private void checkIfWon() {
         if(optionsClass.getImpostorsFound() == optionsClass.getImpostorCount()){
             AlertDialog.Builder ab = new AlertDialog.Builder(this);
             ab.setCancelable(false);
             ab.setTitle("Congratulations! Your score is " + optionsClass.getScanCount());
+            checkHighScores();
             ab.setMessage("Return to Home Screen? ");
             ab.setPositiveButton("yes", new DialogInterface.OnClickListener() {
                 @Override
@@ -207,14 +238,12 @@ public class GameSpace extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
-                    optionsClass.increaseGamesPlayed();
                     optionsClass.reset();
                     Intent intent = getIntent();
                     finish();
                     startActivity(intent);
                 }
             });
-
             ab.show();
         }
     }

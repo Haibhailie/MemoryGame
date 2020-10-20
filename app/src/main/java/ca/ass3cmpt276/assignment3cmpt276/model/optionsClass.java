@@ -1,4 +1,4 @@
-package model;
+package ca.ass3cmpt276.assignment3cmpt276.model;
 
 //Singleton class
 public class optionsClass {

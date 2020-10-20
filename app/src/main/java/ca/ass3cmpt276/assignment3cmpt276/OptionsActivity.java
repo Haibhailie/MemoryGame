@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
-import model.optionsClass;
+import ca.ass3cmpt276.assignment3cmpt276.model.optionsClass;
 
 public class OptionsActivity extends AppCompatActivity {
 

@@ -7,8 +7,8 @@ public class ImpostorGrid {
     private int row;
     private int column;
     private int impostorCount;
-    private int grid[][];
-    private int impostorPosition[];
+    private int[][] grid;
+    private int[] impostorPosition;
     private int scanCount;
     private int impostorsFound;
 

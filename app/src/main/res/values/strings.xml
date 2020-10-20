@@ -1,7 +1,22 @@
 <resources>
-    <string name="app_name">Imposter Finder</string>
+    <string name="app_name">Impostor Finder</string>
     <string name="backgroundAnimatedLink">Background Animation:<a href="https://tenor.com/view/background-image-galaxy-universe-stars-gif-15673753"> Tenor - Narender123</a></string>
     <string name="backgroundAnimatedTextLink">Background Animation (Tenor - Narender123): https://tenor.com/view/background-image-galaxy-universe-stars-gif-15673753</string>
     <string name="characterPNGLink">Among Us Character designs (u/memeymatt): https://www.reddit.com/r/AmongUs/comments/iut5y2/couldnt_find_many_pngs_of_the_among_us_characters</string>
     <string name="homeScreenImage">Home Screen Image (Pm58790): https://pm-universe.fandom.com/wiki/Crewmate?file=AmongUs_MultiPlay.png</string>
+    <string name="title_activity_game_space">activity_game_space</string>
+    <string name="exit">EXIT</string>
+    <string name="impostor_finder">Impostor Finder</string>
+    <string name="start_game">START GAME</string>
+    <string name="help">HELP</string>
+    <string name="text_view">TextView</string>
+    <string name="found">Found \</string>
+    <string name="of">\ of \</string>
+    <string name="impostors">\ Impostors</string>
+    <string name="scans_used">\ Scans used</string>
+    <string name="exit_confirm">Are you sure to exit?</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
+    <string name="back">BACK</string>
+    <string name="options">OPTIONS</string>
 </resources>

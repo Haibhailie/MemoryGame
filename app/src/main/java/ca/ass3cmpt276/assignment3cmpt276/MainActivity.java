@@ -2,14 +2,11 @@ package ca.ass3cmpt276.assignment3cmpt276;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -17,12 +14,12 @@ import android.widget.Button;
 
 import java.util.StringTokenizer;
 
-import model.optionsClass;
+import ca.ass3cmpt276.assignment3cmpt276.model.optionsClass;
 
 public class MainActivity extends AppCompatActivity {
 
     private String gameGrid;
-    private int gameImposterCount;
+    private int gameImpostorCount;
     private int highScore[] = new int[4];
     private int gamesPlayed;
     private optionsClass options = optionsClass.getInstance();
@@ -61,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mpStartGame.start();
+                Intent i = GameSpace.makeLaunchIntent(MainActivity.this);
+                v.getContext().startActivity(i);
             }
         });
 
@@ -102,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         String checkPreferences = preferences.getString("gridOption", "Empty");
         if (checkPreferences.compareTo("Empty") == 0) {
             gameGrid = "a";
-            gameImposterCount = 6;
+            gameImpostorCount = 6;
             gamesPlayed = 0;
             highScore = new int[]{0, 0, 0, 0};
             options.setGrid("a");
@@ -121,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
             options.setHighScore(highScore);
             options.setGamesPlayed(preferences.getInt("timesPlayed",0));
             gameGrid = options.getGrid();
-            gameImposterCount = options.getImpostorCount();
+            gameImpostorCount = options.getImpostorCount();
             highScore = options.getHighScore();
             gamesPlayed = options.getGamesPlayed();
         }

@@ -125,10 +125,8 @@ public class GameSpace extends AppCompatActivity {
                         gridButtonClicked(FINAL_ROW, FINAL_COL);
                     }
                 });
-
                 tableRow.addView(button);
                 buttons[row][col] = button;
-
             }
         }
     }

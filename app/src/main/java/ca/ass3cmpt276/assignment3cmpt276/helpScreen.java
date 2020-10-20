@@ -16,6 +16,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+/*
+* Help screen activity, which is called when we click the help button on the main screen
+* Has the sources where we got our media from
+* They are hyperlinks, so can be clicked
+* Hyperlinking takes place in the strings.xml file and the on clickable is in the layout, all this class does is make them blue
+ */
 public class helpScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +33,7 @@ public class helpScreen extends AppCompatActivity {
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        //| View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         enableCharacterAnimation();
@@ -64,6 +70,14 @@ public class helpScreen extends AppCompatActivity {
         TextView homeScreenLink = (TextView)findViewById(R.id.homeScreenImage);
         homeScreenLink.setMovementMethod(LinkMovementMethod.getInstance());
         homeScreenLink.setLinkTextColor(Color.BLUE);
+
+        TextView developerLink = (TextView)findViewById(R.id.aboutDeveloperLink);
+        developerLink.setMovementMethod(LinkMovementMethod.getInstance());
+        developerLink.setLinkTextColor(Color.BLUE);
+
+        TextView audioLink = (TextView)findViewById(R.id.audioSound);
+        audioLink.setMovementMethod(LinkMovementMethod.getInstance());
+        audioLink.setLinkTextColor(Color.BLUE);
 
     }
 

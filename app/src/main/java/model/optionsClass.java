@@ -1,6 +1,6 @@
 package model;
 
-//Singleton class
+//Singleton class that stores present active grid, impostor count, games played and the high scores for each of the given layouts
 public class optionsClass {
 
     private String grid;

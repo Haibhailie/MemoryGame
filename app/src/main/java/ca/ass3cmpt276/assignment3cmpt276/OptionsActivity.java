@@ -16,6 +16,14 @@ import android.widget.Button;
 import android.widget.Toast;
 import ca.ass3cmpt276.assignment3cmpt276.model.optionsClass;
 
+/*
+* Options class that gets called when we click on the options button from the main menu
+* Has class variables for the active grid option and active number option, which stores the last clicked on options in the SharedPreferences
+* It checks for on click, and initializes the active layout as the one that's selected (grid/number of imposters)
+* It stores the high score of each layout in an array, which are linked to the high score reset buttons. and
+* Clicking the high score will reset the high score for the said layout
+* Same thing with the number of games played, on click resets the total number of games played.
+ */
 public class OptionsActivity extends AppCompatActivity {
 
     Button activeGridButton;
@@ -37,7 +45,7 @@ public class OptionsActivity extends AppCompatActivity {
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        //| View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         initializeBackButton();

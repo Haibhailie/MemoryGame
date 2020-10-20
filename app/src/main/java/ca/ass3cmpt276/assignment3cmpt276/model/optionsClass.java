@@ -1,6 +1,6 @@
 package ca.ass3cmpt276.assignment3cmpt276.model;
 
-//Singleton class
+//Singleton class that stores present active grid, impostor count, games played and the high scores for each of the given layouts
 public class optionsClass {
     private String grid;
     private int impostorCount;

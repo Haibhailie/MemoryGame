@@ -12,7 +12,13 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
-
+/*
+* Intro screen (splash screen) activity
+* Has a basic movement+rotation animation of a spaceman from the game Among Us
+* Has a sound effect on click
+* Waits for 8 seconds (4s for animation +  4s extra time) before it skips to the main menu by itself
+* Presently has a bug where the screen sometimes repeats itself a 2nd time when its not supposed to
+ */
 public class IntroScreen extends AppCompatActivity {
 
     @Override
@@ -28,7 +34,7 @@ public class IntroScreen extends AppCompatActivity {
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        //| View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         ImageView rotateImage = (ImageView) findViewById(R.id.ImposterLogo);
@@ -50,6 +56,7 @@ public class IntroScreen extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                splashThread.interrupt();
                 finish();
                 mp.start();
             }

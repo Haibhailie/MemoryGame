@@ -38,7 +38,7 @@
         android:layout_marginTop="325dp"
         android:layout_marginBottom="351dp"
         android:fontFamily="@font/aldrich"
-        android:text="Imposter Finder"
+        android:text="Impostor Finder"
         android:textColor="#FFFFFF"
         android:textSize="38dp"
         app:layout_constraintBottom_toBottomOf="parent"

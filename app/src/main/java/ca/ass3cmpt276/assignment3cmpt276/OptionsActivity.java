@@ -14,7 +14,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
-import model.optionsClass;
+
+import ca.ass3cmpt276.assignment3cmpt276.model.optionsClass;
 
 /*
 * Options class that gets called when we click on the options button from the main menu
@@ -29,13 +30,16 @@ public class OptionsActivity extends AppCompatActivity {
     Button activeGridButton;
     Button activeNumButton;
     private int highScore[] = new int[4];
+    public static final int DEFAULT_ROWS = 4;
+    public final int DEFAULT_COLUMNS = 6;
+    public final int DEFAULT_IMPOSTOR_COUNT = 6;
 
     private optionsClass options;//singleton class that stores the options
     private final String TAG = "OptionsActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        options = optionsClass.getInstance();
+        options = optionsClass.getInstance(DEFAULT_ROWS, DEFAULT_COLUMNS, DEFAULT_IMPOSTOR_COUNT);
         highScore = options.getHighScore();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options);
@@ -49,7 +53,7 @@ public class OptionsActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         initializeBackButton();
-        Log.d(TAG, "Options Activity: Has the following values: " + options.getGrid() + " and " + options.getImpostorCount());
+        Log.d(TAG, "Options Activity: Has the following values: " + options.getGridOption() + " and " + options.getImpostorCount());
         getActiveButtons();
         activeGridButton = initializeGridButtons(activeGridButton);
         activeNumButton = initializeNumberButtons(activeNumButton);
@@ -187,7 +191,7 @@ public class OptionsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 playSoundOnClick();
-                options.setGrid("a");
+                options.setGridOption("a");
                 activeGridButton = initializeGridButtons(activeGridButton);
             }
         });
@@ -196,7 +200,7 @@ public class OptionsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 playSoundOnClick();
-                options.setGrid("b");
+                options.setGridOption("b");
                 activeGridButton = initializeGridButtons(activeGridButton);
             }
         });
@@ -205,7 +209,7 @@ public class OptionsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 playSoundOnClick();
-                options.setGrid("c");
+                options.setGridOption("c");
                 activeGridButton = initializeGridButtons(activeGridButton);
             }
         });
@@ -214,7 +218,7 @@ public class OptionsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 playSoundOnClick();
-                options.setGrid("d");
+                options.setGridOption("d");
                 activeGridButton = initializeGridButtons(activeGridButton);
             }
         });
@@ -222,13 +226,13 @@ public class OptionsActivity extends AppCompatActivity {
 
     private void getActiveButtons() {
 
-        if (options.getGrid().compareTo("a") == 0) {
+        if (options.getGridOption().compareTo("a") == 0) {
             activeGridButton = findViewById(R.id.x46);
-        } else if (options.getGrid().compareTo("b") == 0) {
+        } else if (options.getGridOption().compareTo("b") == 0) {
             activeGridButton = findViewById(R.id.x510);
-        } else if (options.getGrid().compareTo("c") == 0) {
+        } else if (options.getGridOption().compareTo("c") == 0) {
             activeGridButton = findViewById(R.id.x615);
-        } else if (options.getGrid().compareTo("d") == 0) {
+        } else if (options.getGridOption().compareTo("d") == 0) {
             activeGridButton = findViewById(R.id.x718);
         }
 
@@ -252,16 +256,16 @@ public class OptionsActivity extends AppCompatActivity {
         Button gridC = findViewById(R.id.x615);
         Button gridD = findViewById(R.id.x718);
 
-        if (options.getGrid().compareTo("a") == 0) {
+        if (options.getGridOption().compareTo("a") == 0) {
             gridA.setBackground(getResources().getDrawable(R.drawable.focused_button));
             activeGridButton = gridA;
-        } else if (options.getGrid().compareTo("b") == 0) {
+        } else if (options.getGridOption().compareTo("b") == 0) {
             gridB.setBackground(getResources().getDrawable(R.drawable.focused_button));
             activeGridButton = gridB;
-        } else if (options.getGrid().compareTo("c") == 0) {
+        } else if (options.getGridOption().compareTo("c") == 0) {
             gridC.setBackground(getResources().getDrawable(R.drawable.focused_button));
             activeGridButton = gridC;
-        } else if (options.getGrid().compareTo("d") == 0) {
+        } else if (options.getGridOption().compareTo("d") == 0) {
             gridD.setBackground(getResources().getDrawable(R.drawable.focused_button));
             activeGridButton = gridD;
         }
@@ -300,7 +304,7 @@ public class OptionsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 playSoundOnClick();
-                editor.putString("gridOption", options.getGrid());
+                editor.putString("gridOption", options.getGridOption());
                 editor.putInt("countOption", options.getImpostorCount());
                 editor.putString("highScore", options.getHighScore()[0] + "," + options.getHighScore()[1] + "," + options.getHighScore()[2] + "," + options.getHighScore()[3]);
                 editor.putInt("timesPlayed", options.getGamesPlayed());

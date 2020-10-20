@@ -28,8 +28,8 @@ public class GameSpace extends AppCompatActivity {
     private static final int DEFAULT_IMPOSTOR_COUNT = 6;
     private int impostorIcon = 0;
 
-    Button[][] buttons;
-    optionsClass optionsClass;
+    private  Button[][] buttons;
+    private  optionsClass optionsClass;
     private int count;
 
     @Override
@@ -44,12 +44,18 @@ public class GameSpace extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
-        optionsClass = optionsClass.getInstance(DEFAULT_ROW ,
-                DEFAULT_COLUMN , DEFAULT_IMPOSTOR_COUNT);
-        buttons = new Button[optionsClass.getRow()][optionsClass.getColumn()];
+
+        initializeValues();
+        optionsClass.increaseGamesPlayed();
         optionsClass.reset();
         populateButtons();
         displayStats();
+    }
+
+    private void initializeValues() {
+        optionsClass = optionsClass.getInstance(DEFAULT_ROW ,
+                DEFAULT_COLUMN , DEFAULT_IMPOSTOR_COUNT);
+        buttons = new Button[optionsClass.getRow()][optionsClass.getColumn()];
     }
 
     @Override
@@ -88,6 +94,7 @@ public class GameSpace extends AppCompatActivity {
         TextView textScanUsed = (TextView) findViewById(R.id.textScansUsed);
         String scansUsedDisplay = String.valueOf(optionsClass.getScanCount());
         scansUsedDisplay = scansUsedDisplay.concat(getString(R.string.scans_used));
+
         textScanUsed.setText(scansUsedDisplay);
     }
 
@@ -149,7 +156,7 @@ public class GameSpace extends AppCompatActivity {
 
         else if(checkAction == 0){
             // display number of impostors in rows and columns
-            button.setText(""+ optionsClass.getImpostorInRowsAndColumns(row, col));
+            button.setText(String.valueOf(optionsClass.getImpostorInRowsAndColumns(row, col)));
             button.setTextColor(getResources().getColor(R.color.design_default_color_background, null));
             button.setPadding(0, 0, 0, 0);
         }
@@ -200,6 +207,7 @@ public class GameSpace extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
+                    optionsClass.increaseGamesPlayed();
                     optionsClass.reset();
                     Intent intent = getIntent();
                     finish();
@@ -238,7 +246,7 @@ public class GameSpace extends AppCompatActivity {
                 button.setMinWidth(width);
                 button.setMaxWidth(width);
 
-                int height = button.getWidth();
+                int height = button.getHeight();
                 button.setMinHeight(height);
                 button.setMaxHeight(height);
             }

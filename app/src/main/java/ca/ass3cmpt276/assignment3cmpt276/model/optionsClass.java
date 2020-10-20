@@ -44,6 +44,7 @@ public class optionsClass {
         setupGrid();
     }
 
+
     public int getRow() {
         return row;
     }
@@ -51,6 +52,7 @@ public class optionsClass {
     public int getColumn() {
         return column;
     }
+
 
     public int[] getHighScore() {
         return highScore;
@@ -81,12 +83,26 @@ public class optionsClass {
     }
 
 
+    public int getGridValue(int row, int column){
+        return grid[row][column];
+    }
+
+
     public int getGamesPlayed() {
         return gamesPlayed;
     }
 
     public void setGamesPlayed(int gamesPlayed) {
         this.gamesPlayed = gamesPlayed;
+    }
+
+
+    public void increaseGamesPlayed() {
+        gamesPlayed ++;
+    }
+
+    public void resetGamesPlayed(){
+        gamesPlayed = 0;
     }
 
 
@@ -172,9 +188,6 @@ public class optionsClass {
         return grid[row][column];
     }
 
-    public int getGridValue(int row, int column){
-        return grid[row][column];
-    }
 
     public int getImpostorInRowsAndColumns(int r, int c) {
         int count = 0;
@@ -196,4 +209,5 @@ public class optionsClass {
         impostorsFound = 0;
         setupGrid();
     }
+
 }

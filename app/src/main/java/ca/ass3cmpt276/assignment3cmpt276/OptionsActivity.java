@@ -49,7 +49,6 @@ public class OptionsActivity extends AppCompatActivity {
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        //| View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         initializeBackButton();
@@ -71,7 +70,7 @@ public class OptionsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 playSoundOnClick();
                 if (options.getHighScore()[0] != 0) {
-                    highA.setBackground(getResources().getDrawable(R.drawable.delete_button));
+                    highA.setBackgroundResource(R.drawable.delete_button);
                     highA.setText(String.valueOf(0));
                     options.setHighScore(new int[]{0, highScore[1], highScore[2], highScore[3]});
                 } else
@@ -86,7 +85,7 @@ public class OptionsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 playSoundOnClick();
                 if (options.getHighScore()[1] != 0) {
-                    highB.setBackground(getResources().getDrawable(R.drawable.delete_button));
+                    highB.setBackgroundResource(R.drawable.delete_button);
                     highB.setText(String.valueOf(0));
                     options.setHighScore(new int[]{highScore[0], 0, highScore[2], highScore[3]});
                 } else
@@ -101,7 +100,7 @@ public class OptionsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 playSoundOnClick();
                 if (options.getHighScore()[2] != 0) {
-                    highC.setBackground(getResources().getDrawable(R.drawable.delete_button));
+                    highC.setBackgroundResource(R.drawable.delete_button);
                     highC.setText(String.valueOf(0));
                     options.setHighScore(new int[]{highScore[0], highScore[1], 0, highScore[3]});
                 } else
@@ -116,7 +115,7 @@ public class OptionsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 playSoundOnClick();
                 if (options.getHighScore()[3] != 0) {
-                    highD.setBackground(getResources().getDrawable(R.drawable.delete_button));
+                    highD.setBackgroundResource(R.drawable.delete_button);
                     highD.setText(String.valueOf(0));
                     options.setHighScore(new int[]{highScore[0], highScore[1], highScore[2], 0});
                 } else
@@ -131,9 +130,9 @@ public class OptionsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 playSoundOnClick();
                 if (options.getGamesPlayed() != 0) {
-                    gamesPlayed.setBackground(getResources().getDrawable(R.drawable.delete_button));
+                    gamesPlayed.setBackgroundResource(R.drawable.delete_button);
                     gamesPlayed.setText(String.valueOf(0));
-                    options.setGamesPlayed(0);
+                    options.resetGamesPlayed();
                 } else
                     Toast.makeText(getApplicationContext(), "Total games played is already 0!", Toast.LENGTH_SHORT).show();
             }
@@ -257,16 +256,16 @@ public class OptionsActivity extends AppCompatActivity {
         Button gridD = findViewById(R.id.x718);
 
         if (options.getGridOption().compareTo("a") == 0) {
-            gridA.setBackground(getResources().getDrawable(R.drawable.focused_button));
+            gridA.setBackgroundResource(R.drawable.focused_button);
             activeGridButton = gridA;
         } else if (options.getGridOption().compareTo("b") == 0) {
-            gridB.setBackground(getResources().getDrawable(R.drawable.focused_button));
+            gridB.setBackgroundResource(R.drawable.focused_button);
             activeGridButton = gridB;
         } else if (options.getGridOption().compareTo("c") == 0) {
-            gridC.setBackground(getResources().getDrawable(R.drawable.focused_button));
+            gridC.setBackgroundResource(R.drawable.focused_button);
             activeGridButton = gridC;
         } else if (options.getGridOption().compareTo("d") == 0) {
-            gridD.setBackground(getResources().getDrawable(R.drawable.focused_button));
+            gridD.setBackgroundResource(R.drawable.focused_button);
             activeGridButton = gridD;
         }
         return activeGridButton;
@@ -274,23 +273,23 @@ public class OptionsActivity extends AppCompatActivity {
 
     private Button initializeNumberButtons(Button activeNumButton) {
 
-        activeNumButton.setBackground(getResources().getDrawable(R.drawable.button_background));
+        activeNumButton.setBackgroundResource(R.drawable.button_background);
         Button numA = findViewById(R.id.no6);
         Button numB = findViewById(R.id.no10);
         Button numC = findViewById(R.id.no15);
         Button numD = findViewById(R.id.no20);
 
         if (options.getImpostorCount() == 6) {
-            numA.setBackground(getResources().getDrawable(R.drawable.focused_button));
+            numA.setBackgroundResource(R.drawable.focused_button);
             activeNumButton = numA;
         } else if (options.getImpostorCount() == 10) {
-            numB.setBackground(getResources().getDrawable(R.drawable.focused_button));
+            numB.setBackgroundResource(R.drawable.focused_button);
             activeNumButton = numB;
         } else if (options.getImpostorCount() == 15) {
-            numC.setBackground(getResources().getDrawable(R.drawable.focused_button));
+            numC.setBackgroundResource(R.drawable.focused_button);
             activeNumButton = numC;
         } else if (options.getImpostorCount() == 20) {
-            numD.setBackground(getResources().getDrawable(R.drawable.focused_button));
+            numD.setBackgroundResource(R.drawable.focused_button);
             activeNumButton = numD;
         }
         return activeNumButton;

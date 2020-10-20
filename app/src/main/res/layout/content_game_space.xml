@@ -19,7 +19,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="64dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="50dp"
         android:stretchColumns="*"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,7 +48,7 @@
         android:layout_width="273dp"
         android:layout_height="36dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="64dp"
         android:fontFamily="@font/aldrich"
         android:text="@string/text_view"
         android:textColor="@android:color/white"
@@ -56,5 +56,16 @@
         app:layout_constraintBottom_toBottomOf="@+id/textFoundImpostors"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="72dp"
+        android:layout_height="27dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.075"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableForMines" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.StringTokenizer;
 
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String gameGrid;
     private int gameImpostorCount;
-    private int highScore[] = new int[4];
+    private int[] highScore = new int[4];
     private int gamesPlayed;
     private optionsClass options = optionsClass.getInstance(4, 6, 6);
     private final String TAG = "Main Activity";
@@ -49,9 +50,8 @@ public class MainActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
-        checkSharedPreferences();
-
         setupStartAnimation();
+        checkSharedPreferences();
         setupActivities();
     }
 
@@ -105,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
 
     private void setupStartAnimation() {
         View currentView = this.findViewById(android.R.id.content);

@@ -39,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
 
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.button_click_sound);
-        final MediaPlayer mpStartGame = MediaPlayer.create(this, R.raw.laser_gun);
 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.getWindow().getDecorView().setSystemUiVisibility(
@@ -52,16 +50,18 @@ public class MainActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
         checkSharedPreferences();
-        View currentView = this.findViewById(android.R.id.content);
 
-        Intent splash = IntroScreen.makeLaunchIntent(MainActivity.this);
-        currentView.getContext().startActivity(splash);
+        setupStartAnimation();
+        setupActivities();
+    }
+
+    private void setupActivities() {
+
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.button_click_sound);
+        final MediaPlayer mpStartGame = MediaPlayer.create(this, R.raw.laser_gun);
 
 
-        Button optionsButton = findViewById(R.id.optionsButton);
         Button startButton = findViewById(R.id.startGameButton);
-        final Button helpButton = findViewById(R.id.helpButton);
-
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        Button optionsButton = findViewById(R.id.optionsButton);
         optionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
         });
         Log.d(TAG, "Main Activity: After changing options has the values: " + options.getGridOption() + " and " + options.getImpostorCount());
 
+
+        Button helpButton = findViewById(R.id.helpButton);
         helpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,10 +103,13 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+
     }
 
     private void setupStartAnimation() {
-
+        View currentView = this.findViewById(android.R.id.content);
+        Intent splash = IntroScreen.makeLaunchIntent(MainActivity.this);
+        currentView.getContext().startActivity(splash);
     }
 
     private void checkSharedPreferences() {

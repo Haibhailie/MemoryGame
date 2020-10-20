@@ -14,6 +14,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
+import android.util.Log;
 import android.os.Vibrator;
 import android.view.View;
 import android.view.WindowManager;
@@ -33,6 +34,7 @@ public class GameSpace extends AppCompatActivity {
 
     private  Button[][] buttons;
     private  optionsClass optionsClass;
+    private int count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -194,6 +196,37 @@ public class GameSpace extends AppCompatActivity {
             default:
                 impostorIcon = (impostorIcon + 1) % 8;
                 return R.drawable.green;
+        }
+    }
+
+    private void checkHighScores(){
+
+        if(optionsClass.getGridOption().compareTo("a")==0){
+            if(optionsClass.getHighScore()[0]==0)
+                optionsClass.setHighScore(new int[]{optionsClass.getScanCount(), optionsClass.getHighScore()[1], optionsClass.getHighScore()[2], optionsClass.getHighScore()[3]});
+            else if(optionsClass.getScanCount()<optionsClass.getHighScore()[0])
+                optionsClass.setHighScore(new int[]{optionsClass.getScanCount(), optionsClass.getHighScore()[1], optionsClass.getHighScore()[2], optionsClass.getHighScore()[3]});
+        }
+
+        if(optionsClass.getGridOption().compareTo("b")==0){
+            if(optionsClass.getHighScore()[1]==0)
+                optionsClass.setHighScore(new int[]{optionsClass.getHighScore()[0], optionsClass.getScanCount(), optionsClass.getHighScore()[2], optionsClass.getHighScore()[3]});
+            else if(optionsClass.getScanCount()<optionsClass.getHighScore()[1])
+                optionsClass.setHighScore(new int[]{optionsClass.getHighScore()[0], optionsClass.getScanCount(), optionsClass.getHighScore()[2], optionsClass.getHighScore()[3]});
+        }
+
+        if(optionsClass.getGridOption().compareTo("c")==0){
+            if(optionsClass.getHighScore()[2]==0)
+                optionsClass.setHighScore(new int[]{optionsClass.getHighScore()[0], optionsClass.getHighScore()[1], optionsClass.getScanCount(), optionsClass.getHighScore()[3]});
+            else if(optionsClass.getScanCount()<optionsClass.getHighScore()[2])
+                optionsClass.setHighScore(new int[]{optionsClass.getHighScore()[0], optionsClass.getHighScore()[1], optionsClass.getScanCount(), optionsClass.getHighScore()[3]});
+        }
+
+        if(optionsClass.getGridOption().compareTo("d")==0){
+            if(optionsClass.getHighScore()[3]==0)
+                optionsClass.setHighScore(new int[]{optionsClass.getHighScore()[0], optionsClass.getHighScore()[1], optionsClass.getHighScore()[2], optionsClass.getScanCount()});
+            else if(optionsClass.getScanCount()<optionsClass.getHighScore()[3])
+                optionsClass.setHighScore(new int[]{optionsClass.getHighScore()[0], optionsClass.getHighScore()[1], optionsClass.getHighScore()[2], optionsClass.getScanCount()});
         }
     }
 

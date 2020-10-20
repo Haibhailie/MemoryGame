@@ -10,7 +10,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-
+    private boolean checkIntroScreen = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,8 +25,10 @@ public class MainActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-
-        startActivity(splashScreen);
+        if(checkIntroScreen == false) {
+            startActivity(splashScreen);
+            checkIntroScreen = true;
+        }
         Button optionsButton = findViewById(R.id.optionsButton);
         Button startButton = findViewById(R.id.startButton);
         final Button helpButton = findViewById(R.id.helpButton);

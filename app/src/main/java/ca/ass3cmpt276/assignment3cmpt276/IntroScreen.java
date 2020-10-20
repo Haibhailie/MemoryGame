@@ -8,7 +8,10 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public class IntroScreen extends AppCompatActivity {
+    private Thread splashThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +28,7 @@ public class IntroScreen extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
-        Thread splashThread = new Thread() {
+        splashThread = new Thread() {
             public void run() {
                 try {
                     sleep(4000);
@@ -39,10 +42,16 @@ public class IntroScreen extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                splashThread.interrupt();
                 finish();
             }
         });
         splashThread.start();
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        splashThread.interrupt();
     }
 }

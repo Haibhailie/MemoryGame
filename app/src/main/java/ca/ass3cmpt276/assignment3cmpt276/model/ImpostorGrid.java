@@ -122,4 +122,12 @@ public class ImpostorGrid {
         }
         return count;
     }
+
+    public void reset() {
+        scanCount = 0;
+        impostorsFound = 0;
+        initializeImpostorPosition();
+        initializeGrid();
+        populateGrid();
+    }
 }

@@ -249,7 +249,7 @@ public class OptionsActivity extends AppCompatActivity {
 
     private Button initializeGridButtons(Button activeGridButton) {
 
-        activeGridButton.setBackground(getResources().getDrawable(R.drawable.button_background));
+        activeGridButton.setBackgroundResource(R.drawable.button_background);
         Button gridA = findViewById(R.id.x46);
         Button gridB = findViewById(R.id.x510);
         Button gridC = findViewById(R.id.x615);
@@ -293,6 +293,21 @@ public class OptionsActivity extends AppCompatActivity {
             activeNumButton = numD;
         }
         return activeNumButton;
+    }
+
+    @Override
+    public void onBackPressed() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        final SharedPreferences.Editor editor = preferences.edit();
+
+        playSoundOnClick();
+        editor.putString("gridOption", options.getGridOption());
+        editor.putInt("countOption", options.getImpostorCount());
+        editor.putString("highScore", options.getHighScore()[0] + "," + options.getHighScore()[1] + "," + options.getHighScore()[2] + "," + options.getHighScore()[3]);
+        editor.putInt("timesPlayed", options.getGamesPlayed());
+        editor.commit();
+        finish();
+        super.onBackPressed();
     }
 
     private void initializeBackButton() {

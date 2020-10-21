@@ -3,6 +3,7 @@ package ca.ass3cmpt276.assignment3cmpt276;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.os.Vibrator;
 import android.view.View;
@@ -68,6 +70,16 @@ public class GameSpace extends AppCompatActivity {
         buttons = new Button[optionsClass.getRow()][optionsClass.getColumn()];
     }
 
+    private void playSoundOnClick(){
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.laser_gun);
+        mp.start();
+    }
+
+    private void vibrateOnClick(long duration){
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        v.vibrate(duration);
+    }
+
     @Override
     public void onBackPressed() {
         AlertDialog.Builder ab = new AlertDialog.Builder(this);
@@ -77,6 +89,15 @@ public class GameSpace extends AppCompatActivity {
         ab.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(GameSpace.this);
+                final SharedPreferences.Editor editor = preferences.edit();
+
+                playSoundOnClick();
+                editor.putString("gridOption", optionsClass.getGridOption());
+                editor.putInt("countOption", optionsClass.getImpostorCount());
+                editor.putString("highScore", optionsClass.getHighScore()[0] + "," + optionsClass.getHighScore()[1] + "," + optionsClass.getHighScore()[2] + "," + optionsClass.getHighScore()[3]);
+                editor.putInt("timesPlayed", optionsClass.getGamesPlayed());
+                editor.commit();
                 dialog.dismiss();
                 finish();
             }
@@ -106,6 +127,27 @@ public class GameSpace extends AppCompatActivity {
         scansUsedDisplay = scansUsedDisplay.concat(getString(R.string.scans_used));
 
         textScanUsed.setText(scansUsedDisplay);
+
+        TextView gamesPlayed = (TextView) findViewById(R.id.textGamesPlayed);
+        String gamesPlayedString = "Games played: ";
+        gamesPlayedString = gamesPlayedString.concat(String.valueOf(optionsClass.getGamesPlayed()));
+        gamesPlayed.setText(gamesPlayedString);
+
+        TextView highScore = (TextView) findViewById(R.id.textHighScore);
+        String highScoreString = "High score: ";
+        if(optionsClass.getGridOption().compareTo("a") == 0){
+            highScoreString = highScoreString.concat(String.valueOf(optionsClass.getHighScore()[0]));
+        }
+        else if(optionsClass.getGridOption().compareTo("b") == 0){
+            highScoreString = highScoreString.concat(String.valueOf(optionsClass.getHighScore()[1]));
+        }
+        else if(optionsClass.getGridOption().compareTo("c") == 0){
+            highScoreString = highScoreString.concat(String.valueOf(optionsClass.getHighScore()[2]));
+        }
+        else if(optionsClass.getGridOption().compareTo("d") == 0){
+            highScoreString = highScoreString.concat(String.valueOf(optionsClass.getHighScore()[3]));
+        }
+        highScore.setText(highScoreString);
     }
 
     private void populateButtons() {
@@ -149,15 +191,14 @@ public class GameSpace extends AppCompatActivity {
         // Lock button sizes:
         lockButtonSizes();
 
-        final MediaPlayer impostorHitSound = MediaPlayer.create(this, R.raw.laser_gun);
-        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
 
         int checkAction = optionsClass.onGridClicked(row, col);
 
         if(checkAction == 1){
             // display impostor
-            impostorHitSound.start();
-            v.vibrate(1000);
+            playSoundOnClick();
+            vibrateOnClick(1000);
             int newWidth = button.getWidth();
             int newHeight = button.getHeight();
             Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), randomImpostorIcon());
@@ -169,7 +210,7 @@ public class GameSpace extends AppCompatActivity {
 
         else if(checkAction == 0){
             // display number of impostors in rows and columns
-            v.vibrate(400);
+            vibrateOnClick(400);
             button.setText(String.valueOf(optionsClass.getImpostorInRowsAndColumns(row, col)));
             button.setTextColor(getResources().getColor(R.color.design_default_color_background, null));
             button.setPadding(0, 0, 0, 0);

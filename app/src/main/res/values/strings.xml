@@ -21,7 +21,7 @@
     <string name="impostors">\ impostors \</string>
     <string name="scans_used">\ Scans used</string>
     <string name="helpText">HELP</string>
-    <string name="in_this_game_you_find_all_the_imposters_hiding_in_our_spaceship_check_each_door_one_by_one_to_see_if_they_re_hidden_behind_it_once_you_catch_them_they_tell_you_how_many_more_are_remaining_in_the_row_and_column_they_re_present_in_so_get_going_and_find_the_imposters_so_we_can_make_our_way_home">In this game, you find all the imposters hiding in our spaceship. Check each door one by one to see if they\'re hidden behind it. Once you catch them, they tell you how many more are remaining in the row and column they\'re present in. So get going and find the imposters so we can make our way home.</string>
+    <string name="game_description">In this game, you find all the impostors hiding in our spaceship. Check each door one by one to see if they\'re hidden behind it. Once you catch them, you can make them tell you how many more are remaining in their row and column by clicking them again. So get going and find the impostors so we can make our way home.</string>
     <string name="the_resources_used_in_this_project_are_as_follows">The resources used in this project are as follows:</string>
     <string name="backText">BACK</string>
     <string name="shashank_thanalapati">Shashank Thanalapati</string>

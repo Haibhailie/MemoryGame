@@ -65,6 +65,12 @@ public class IntroScreen extends AppCompatActivity {
         splashThread.start();
     }
 
+    @Override
+    public void onBackPressed() {
+        System.exit(0);
+        super.onBackPressed();
+    }
+
     public static Intent makeLaunchIntent(Context c) {
         Intent intent = new Intent(c, IntroScreen.class);
         return intent;

@@ -56,7 +56,6 @@ public class GameSpace extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
-
         initializeValues();
         optionsClass.increaseGamesPlayed();
         optionsClass.reset();
@@ -198,7 +197,7 @@ public class GameSpace extends AppCompatActivity {
         if(checkAction == 1){
             // display impostor
             playSoundOnClick();
-            vibrateOnClick(1000);
+            vibrateOnClick(50);
             int newWidth = button.getWidth();
             int newHeight = button.getHeight();
             Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), randomImpostorIcon());
@@ -210,7 +209,7 @@ public class GameSpace extends AppCompatActivity {
 
         else if(checkAction == 0){
             // display number of impostors in rows and columns
-            vibrateOnClick(400);
+            vibrateOnClick(100);
             button.setText(String.valueOf(optionsClass.getImpostorInRowsAndColumns(row, col)));
             button.setTextColor(getResources().getColor(R.color.design_default_color_background, null));
             button.setPadding(0, 0, 0, 0);

@@ -1,6 +1,7 @@
 package ca.ass3cmpt276.assignment3cmpt276;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
@@ -17,11 +18,11 @@ import java.util.StringTokenizer;
 import ca.ass3cmpt276.assignment3cmpt276.model.optionsClass;
 
 /*
-* This is the main activity class of the game which has the following features:
-* Calls the splash screen (intro screen) on startup
-* Reads the SharedPreferences and checks if anything has been saved before on the given device prior to this execution
-* Has buttons that lead to the game, options and the help screen
-* If no SharedPreferences are found, it creates new default values and stores them for first run
+ * This is the main activity class of the game which has the following features:
+ * Calls the splash screen (intro screen) on startup
+ * Reads the SharedPreferences and checks if anything has been saved before on the given device prior to this execution
+ * Has buttons that lead to the game, options and the help screen
+ * If no SharedPreferences are found, it creates new default values and stores them for first run
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -84,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
         });
         Log.d(TAG, "Main Activity: After changing options has the values: " + options.getGridOption() + " and " + options.getImpostorCount());
 
-
         Button helpButton = findViewById(R.id.helpButton);
         helpButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,15 +130,16 @@ public class MainActivity extends AppCompatActivity {
             options.setHighScore(new int[]{0, 0, 0, 0});
         } else {
             options.setGridOption(preferences.getString("gridOption", "Empty"));
-            options.setImpostorCount(preferences.getInt("countOption",0));
-            String highScoreString = preferences.getString("highScore","0,0,0,0");
+            options.setImpostorCount(preferences.getInt("countOption", 0));
+            String highScoreString = preferences.getString("highScore", "0,0,0,0");
             StringTokenizer st = new StringTokenizer(highScoreString, ",");
-            for(int i=0;i<4;i++){
+            for (int i = 0; i < 4; i++) {
                 Log.d(TAG, "Writing high score" + i + " and " + highScoreString);
-                highScore[i]=Integer.valueOf(st.nextToken());
+                highScore[i] = Integer.valueOf(st.nextToken());
             }
             options.setHighScore(highScore);
-            options.setGamesPlayed(preferences.getInt("timesPlayed",0));
+            options.setGamesPlayed(preferences.getInt("timesPlayed", 0));
+            Log.d(TAG, "GAMES PLAYED IS " + options.getGamesPlayed());
             gameGrid = options.getGridOption();
             gameImpostorCount = options.getImpostorCount();
             highScore = options.getHighScore();

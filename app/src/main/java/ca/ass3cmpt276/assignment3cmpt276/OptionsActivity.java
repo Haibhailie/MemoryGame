@@ -321,6 +321,7 @@ public class OptionsActivity extends AppCompatActivity {
                 editor.putString("gridOption", options.getGridOption());
                 editor.putInt("countOption", options.getImpostorCount());
                 editor.putString("highScore", options.getHighScore()[0] + "," + options.getHighScore()[1] + "," + options.getHighScore()[2] + "," + options.getHighScore()[3]);
+                Log.d(TAG, "GAMES PLAYED IS " + options.getGamesPlayed());
                 editor.putInt("timesPlayed", options.getGamesPlayed());
                 editor.commit();
                 finish();

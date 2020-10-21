@@ -25,6 +25,12 @@ import android.widget.TextView;
 
 import ca.ass3cmpt276.assignment3cmpt276.model.optionsClass;
 
+/*
+* This is the class which maintains the game play of the application (activity_game_space).
+* Initializes the 2d array for the grid of impostors, and creates the required layouts in the UI.
+* Checks and sets high-scores after game play.
+* Creates a winning_screen_fragment (alert dialog) on exit/victory.
+ */
 public class GameSpace extends AppCompatActivity {
 
     private static final int DEFAULT_ROW = 4;

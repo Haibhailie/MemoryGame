@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Imposter Finder</string>
+    <string name="app_name">Impostor Hunter</string>
     <string name="backgroundAnimatedLink">Background Animation:<a href="https://tenor.com/view/background-image-galaxy-universe-stars-gif-15673753"> Tenor - Narender123</a></string>
     <string name="backgroundAnimatedTextLink">Background Animation (Tenor - Narender123): https://tenor.com/view/background-image-galaxy-universe-stars-gif-15673753</string>
     <string name="characterPNGLink">Among Us Character designs (u/memeymatt): https://www.reddit.com/r/AmongUs/comments/iut5y2/couldnt_find_many_pngs_of_the_among_us_characters</string>
@@ -7,7 +7,7 @@
     <string name="developerLink">About the developers (Shanks and Gabbu):  https://opencoursehub.cs.sfu.ca/bfraser/grav-cms/cmpt276/home</string>
     <string name="audioSoundLink">The button click sound:  https://www.youtube.com/watch?v=FuvmTL1nPDs&amp;ab_channel=PewDiePie</string>
     <string name="exit">Exit</string>
-    <string name="impostor_finder">Impostor Finder</string>
+    <string name="impostor_finder">Impostor Hunter</string>
     <string name="start_game">Start Game</string>
     <string name="options">Options</string>
     <string name="help">Help</string>
@@ -41,4 +41,9 @@
     <string name="reset_high_scores">Reset High Scores:</string>
     <string name="_0">0</string>
     <string name="no_of_games_click_to_reset">No. of games: (click to reset)</string>
+    <string name="high_score_4X6_0">High score for 4 x 6 is already 0!</string>
+    <string name="high_score_5X10_0">High score for 5 x 10 is already 0!</string>
+    <string name="high_score_6X15_0">High score for 6 x 15 is already 0!</string>
+    <string name="high_score_7X18_0">High score for 7 x 18 is already 0!</string>
+    <string name="Total_games_0">Total games played is already 0!</string>
 </resources>

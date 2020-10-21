@@ -40,7 +40,7 @@
         android:layout_marginBottom="351dp"
         android:fontFamily="@font/aldrich"
         android:text="@string/impostor_finder"
-        android:textColor="#FFFFFF"
+        android:textColor="@android:color/white"
         android:textSize="38sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

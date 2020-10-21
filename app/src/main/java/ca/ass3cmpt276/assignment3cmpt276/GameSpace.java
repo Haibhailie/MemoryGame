@@ -7,12 +7,15 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.util.Log;
+import android.os.Vibrator;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -22,6 +25,12 @@ import android.widget.TextView;
 
 import ca.ass3cmpt276.assignment3cmpt276.model.optionsClass;
 
+/*
+* This is the class which maintains the game play of the application (activity_game_space).
+* Initializes the 2d array for the grid of impostors, and creates the required layouts in the UI.
+* Checks and sets high-scores after game play.
+* Creates a winning_screen_fragment (alert dialog) on exit/victory.
+ */
 public class GameSpace extends AppCompatActivity {
 
     private static final int DEFAULT_ROW = 4;
@@ -31,6 +40,7 @@ public class GameSpace extends AppCompatActivity {
 
     private  Button[][] buttons;
     private  optionsClass optionsClass;
+    private int count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +129,7 @@ public class GameSpace extends AppCompatActivity {
                         1.0f));
                 button.setBackgroundResource(R.drawable.button_background);
 
+
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -137,11 +148,16 @@ public class GameSpace extends AppCompatActivity {
         Button button = buttons[row][col];
         // Lock button sizes:
         lockButtonSizes();
+
+        final MediaPlayer impostorHitSound = MediaPlayer.create(this, R.raw.laser_gun);
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
         int checkAction = optionsClass.onGridClicked(row, col);
 
         if(checkAction == 1){
             // display impostor
-            // vibrate and ping sound
+            impostorHitSound.start();
+            v.vibrate(1000);
             int newWidth = button.getWidth();
             int newHeight = button.getHeight();
             Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), randomImpostorIcon());
@@ -153,6 +169,7 @@ public class GameSpace extends AppCompatActivity {
 
         else if(checkAction == 0){
             // display number of impostors in rows and columns
+            v.vibrate(400);
             button.setText(String.valueOf(optionsClass.getImpostorInRowsAndColumns(row, col)));
             button.setTextColor(getResources().getColor(R.color.design_default_color_background, null));
             button.setPadding(0, 0, 0, 0);
@@ -220,29 +237,10 @@ public class GameSpace extends AppCompatActivity {
 
     private void checkIfWon() {
         if(optionsClass.getImpostorsFound() == optionsClass.getImpostorCount()){
-            AlertDialog.Builder ab = new AlertDialog.Builder(this);
-            ab.setCancelable(false);
-            ab.setTitle("Congratulations! Your score is " + optionsClass.getScanCount());
             checkHighScores();
-            ab.setMessage("Return to Home Screen? ");
-            ab.setPositiveButton("yes", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                    finish();
-                }
-            });
-            ab.setNegativeButton("Play Again", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                    optionsClass.reset();
-                    Intent intent = getIntent();
-                    finish();
-                    startActivity(intent);
-                }
-            });
-            ab.show();
+            FragmentManager manager = getSupportFragmentManager();
+            winning_screen_fragment dialog = new winning_screen_fragment();
+            dialog.show(manager, "winning_screen_dialog");
         }
     }
 
@@ -251,14 +249,14 @@ public class GameSpace extends AppCompatActivity {
         for(int c = 0; c < optionsClass.getColumn(); c ++){
             if(optionsClass.getGridValue(row, c) == 2) {
                 button = buttons[row][c];
-                button.setText("" + optionsClass.getImpostorInRowsAndColumns(row, c));
+                button.setText(String.valueOf(optionsClass.getImpostorInRowsAndColumns(row, c)));
                 button.setPadding(0, 0, 0, 0);
             }
         }
         for(int r = 0; r < optionsClass.getRow(); r++){
             if(optionsClass.getGridValue(r, col) == 2) {
                 button = buttons[r][col];
-                button.setText("" + optionsClass.getImpostorInRowsAndColumns(r, col));
+                button.setText(String.valueOf(optionsClass.getImpostorInRowsAndColumns(r, col)));
                 button.setPadding(0, 0, 0, 0);
             }
         }

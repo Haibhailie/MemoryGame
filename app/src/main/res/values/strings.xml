@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Imposter Finder</string>
+    <string name="app_name">Impostor Hunter</string>
     <string name="backgroundAnimatedLink">Background Animation:<a href="https://tenor.com/view/background-image-galaxy-universe-stars-gif-15673753"> Tenor - Narender123</a></string>
     <string name="backgroundAnimatedTextLink">Background Animation (Tenor - Narender123): https://tenor.com/view/background-image-galaxy-universe-stars-gif-15673753</string>
     <string name="characterPNGLink">Among Us Character designs (u/memeymatt): https://www.reddit.com/r/AmongUs/comments/iut5y2/couldnt_find_many_pngs_of_the_among_us_characters</string>
@@ -7,7 +7,7 @@
     <string name="developerLink">About the developers (Shanks and Gabbu):  https://opencoursehub.cs.sfu.ca/bfraser/grav-cms/cmpt276/home</string>
     <string name="audioSoundLink">The button click sound:  https://www.youtube.com/watch?v=FuvmTL1nPDs&amp;ab_channel=PewDiePie</string>
     <string name="exit">Exit</string>
-    <string name="impostor_finder">Impostor Finder</string>
+    <string name="impostor_finder">Impostor Hunter</string>
     <string name="start_game">Start Game</string>
     <string name="options">Options</string>
     <string name="help">Help</string>

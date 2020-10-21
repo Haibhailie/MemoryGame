@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
+import com.google.android.material.internal.ViewUtils;
+
 public class winning_screen_fragment extends AppCompatDialogFragment {
 
     @Override
@@ -35,16 +37,17 @@ public class winning_screen_fragment extends AppCompatDialogFragment {
                         startActivity(i);
                         break;
                 }
-
-                getActivity().finish();
             }
         };
 
-        return new AlertDialog.Builder(getActivity())
-                .setTitle("Congratulations! Well Done!")
-                .setView(v)
-                .setPositiveButton("Yes", listener)
-                .setNegativeButton("No", listener)
-                .create();
+        AlertDialog.Builder ab = new AlertDialog.Builder(getActivity());
+        ab.setView(v);
+        ab.setCancelable(false);
+        ab.setPositiveButton("Yes", listener);
+        ab.setNegativeButton("No", listener);
+
+        Dialog d = ab.create();
+        d.setCanceledOnTouchOutside(false);
+        return d;
     }
 }

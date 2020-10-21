@@ -153,7 +153,7 @@ public class GameSpace extends AppCompatActivity {
         if(checkAction == 1){
             // display impostor
             impostorHitSound.start();
-            v.vibrate(400);
+            v.vibrate(1000);
             int newWidth = button.getWidth();
             int newHeight = button.getHeight();
             Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), randomImpostorIcon());
@@ -165,6 +165,7 @@ public class GameSpace extends AppCompatActivity {
 
         else if(checkAction == 0){
             // display number of impostors in rows and columns
+            v.vibrate(400);
             button.setText(String.valueOf(optionsClass.getImpostorInRowsAndColumns(row, col)));
             button.setTextColor(getResources().getColor(R.color.design_default_color_background, null));
             button.setPadding(0, 0, 0, 0);
@@ -232,6 +233,7 @@ public class GameSpace extends AppCompatActivity {
 
     private void checkIfWon() {
         if(optionsClass.getImpostorsFound() == optionsClass.getImpostorCount()){
+            checkHighScores();
             FragmentManager manager = getSupportFragmentManager();
             winning_screen_fragment dialog = new winning_screen_fragment();
             dialog.show(manager, "winning_screen_dialog");

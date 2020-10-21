@@ -10,6 +10,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
         android:fontFamily="@font/aldrich"
         android:text="Play Again?"
         android:textAlignment="center"
@@ -17,21 +18,80 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline7"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.453"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline6" />
+        app:layout_constraintTop_toTopOf="@+id/guideline6"
+        app:layout_constraintVertical_bias="0.948" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="272dp" />
+        app:layout_constraintGuide_begin="63dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="376dp" />
+        app:layout_constraintGuide_begin="313dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="325dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/aldrich"
+        android:text="VICTORY !"
+        android:textColor="@android:color/widget_edittext_dark"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.442"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline6"
+        app:layout_constraintVertical_bias="0.818" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/aldrich"
+        android:text="CONGRATULATIONS !"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.441"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.75" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="588dp" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.401"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:srcCompat="@drawable/among_us_victory" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
